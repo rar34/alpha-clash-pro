@@ -5,15 +5,15 @@
 //     playGround.classList.remove('hidden');
 // }
 
-function handleKeyboardButtonPress(event){
-    
+function handleKeyboardButtonPress(event) {
+
     const playerPressed = event.key;
 
     const currentAlphabetElement = document.getElementById('current-alphabet');
     const currentAlphabet = currentAlphabetElement.innerText;
     const expectedAlphabet = currentAlphabet.toLowerCase();
     console.log(expectedAlphabet, playerPressed);
-    if(playerPressed === expectedAlphabet){
+    if (playerPressed === expectedAlphabet) {
         // console.log('you get a point');
         const currentScore = textElementValueById('current-score');
         const updatedScore = currentScore + 1;
@@ -39,14 +39,13 @@ function handleKeyboardButtonPress(event){
         removeBackgroundColor(expectedAlphabet);
         continueGame()
     }
-    else{
+    else {
         const currentLife = textElementValueById('current-life');
         const updatedLife = currentLife - 1;
         setTextElementById('current-life', updatedLife);
 
-        if(updatedLife === 0){
-            hideElementById('play-ground-section');
-            showElementById('final-score-section')
+        if (updatedLife === 0) {
+            gameOver();
         }
 
 
@@ -60,7 +59,7 @@ function handleKeyboardButtonPress(event){
         // const newLife = currentLife - 1;
         // currentLifeElement.innerText = newLife;
 
-        
+
     }
 }
 
@@ -68,7 +67,7 @@ function handleKeyboardButtonPress(event){
 // capture keyboard key press
 document.addEventListener('keyup', handleKeyboardButtonPress);
 
-function continueGame(){
+function continueGame() {
     const alphabet = getARandomAlphabet();
     // console.log("Your random alphabet is ", alphabet);
 
@@ -80,8 +79,17 @@ function continueGame(){
 }
 
 
-function play(){
+function play() {
     hideElementById('home-section');
     showElementById('play-ground-section');
+    hideElementById('final-score-section')
+
+    setTextElementById('current-life',5);
+    setTextElementById('current-score',0);
     continueGame();
+}
+
+function gameOver() {
+    hideElementById('play-ground-section');
+    showElementById('final-score-section');
 }
