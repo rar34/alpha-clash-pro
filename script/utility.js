@@ -12,7 +12,22 @@ function setBackgroundColor(elementId){
     const element = document.getElementById(elementId);
     element.classList.add('bg-orange-300');
 }
+function removeBackgroundColor(elementId){
+    const element = document.getElementById(elementId);
+    element.classList.remove('bg-orange-300');
+}
 
+function textElementValueById(elementId){
+    const element = document.getElementById(elementId);
+    const elementValue = element.innerText;
+    const value = parseInt(elementValue);
+    return value;
+}
+
+function setTextElementById(elementId, value){
+    const element = document.getElementById(elementId);
+    element.innerText = value;
+}
 
 function getARandomAlphabet(){
     // get and get a alphabet array
